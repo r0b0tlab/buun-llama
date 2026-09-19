@@ -19,7 +19,8 @@ ARG BUUN_REPO
 ARG BUUN_SHA
 ARG CUDA_ARCH
 
-ENV DEBIAN_FRONTEND=noninteractive
+ENV DEBIAN_FRONTEND=noninteractive \
+    LIBRARY_PATH=/usr/local/cuda/lib64/stubs
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
@@ -44,7 +45,10 @@ RUN cmake -B build -G Ninja \
         -DCMAKE_CUDA_ARCHITECTURES=${CUDA_ARCH} \
         -DLLAMA_BUILD_TESTS=OFF \
         -DLLAMA_BUILD_SERVER=ON \
-        -DLLAMA_CURL=ON
+        -DLLAMA_CURL=ON \
+        -DCMAKE_LIBRARY_PATH=/usr/local/cuda/lib64/stubs \
+        -DCMAKE_EXE_LINKER_FLAGS="-Wl,--allow-shlib-undefined" \
+        -DCMAKE_SHARED_LINKER_FLAGS="-Wl,--allow-shlib-undefined"
 RUN cmake --build build -j"$(nproc)" --target llama-server \
     && mkdir -p /out/bin /out/lib \
     && cp build/bin/llama-server /out/bin/ \
