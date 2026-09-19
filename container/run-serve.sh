@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# GPU serve via nvidia-container-toolkit, or device binds if toolkit is missing.
+# GPU serve via device binds (this host has no nvidia-container-toolkit).
 set -euo pipefail
 IMAGE="${IMAGE:-buun-llama:3090}"
 NAME="${NAME:-buun-llama}"
@@ -10,16 +10,11 @@ RECIPE="${RECIPE:-dflash2-max}"
 mkdir -p "$MODELS"
 docker rm -f "$NAME" >/dev/null 2>&1 || true
 
-GPU_ARGS=(--gpus all)
-if ! docker info 2>/dev/null | grep -qi nvidia; then
-  GPU_ARGS=(
-    --device /dev/nvidia0 --device /dev/nvidiactl --device /dev/nvidia-uvm
-  )
-fi
-
 exec docker run -d --name "$NAME" \
-  "${GPU_ARGS[@]}" \
+  --device /dev/nvidia0 --device /dev/nvidiactl --device /dev/nvidia-uvm \
+  -v /usr/lib/x86_64-linux-gnu/libcuda.so.1:/usr/lib/x86_64-linux-gnu/libcuda.so.1:ro \
+  -v /usr/lib/x86_64-linux-gnu/libnvidia-ml.so.1:/usr/lib/x86_64-linux-gnu/libnvidia-ml.so.1:ro \
   -p "${PORT}:8080" \
-  -v "$MODELS":/models \
+  -v "$MODELS":/models:ro \
   -e RECIPE_FILE="/opt/buun-llama/recipes/${RECIPE}.env" \
   "$IMAGE"
