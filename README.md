@@ -8,15 +8,18 @@ Weights: [r0b0tlab/Qwen3.8-27B-EXL3-4.00bpw](https://huggingface.co/r0b0tlab/Qwe
 
 ## Results
 
-Status: unverified. Fill `notes/RESULTS.md` after the gates in `notes/GATES.md` run on this tree. The ExLlamaV3 twin on the same 3090, GSM8K greedy, ctx 8192:
+Buun DFlash2 on this tree, RTX 3090, GSM8K greedy n=40, ctx 8192, pin `1d0f493`, image `buun-llama:3090`. JSON: `notes/acceptance-dflash2.json`.
 
-| arm | acceptance length | tok/s |
-| --- | ---: | ---: |
-| autoregressive | 1.00 | 42.8 |
-| MTP head | 4.12 | 116.3 |
-| DFlash2 native ExLlamaV3 | 5.66 | 162.9 |
+| arm | acceptance length | tok/s | status |
+| --- | ---: | ---: | --- |
+| buun DFlash2 (this repo) | 4.76 | 111.4 | passed |
+| ExLlamaV3 AR (twin) | 1.00 | 42.8 | baseline |
+| ExLlamaV3 MTP (twin) | 4.12 | 116.3 | baseline |
+| ExLlamaV3 DFlash2 (twin) | 5.66 | 162.9 | baseline |
 
-Those numbers are the comparison baseline, not this package.
+Buun MTP / AR / 262k / NIAH / Q200v2: unverified. Peak eval VRAM 17542 MiB. `--fit on` failed then restored pre-fit params.
+
+Host 8080 is often taken. Default container map is host 8888 -> container 8080.
 
 ## Recipes
 
@@ -45,8 +48,8 @@ bash scripts/serve.sh recipes/dflash2-max.env
 On another shell:
 
 ```bash
-python3 scripts/wait_ready.py --base-url http://127.0.0.1:8080
-python3 scripts/acceptance_check.py --n 40 --json-out notes/acceptance-dflash2.json
+python3 scripts/wait_ready.py --base-url http://127.0.0.1:8888
+python3 scripts/acceptance_check.py --base-url http://127.0.0.1:8888 --n 40 --json-out notes/acceptance-dflash2.json
 ```
 
 ## Container
@@ -59,7 +62,7 @@ bash container/run-serve.sh
 Click-run once the image is on GHCR:
 
 ```bash
-docker run --gpus all -p 8080:8080 -v buun-models:/models \
+docker run --gpus all -p 8888:8080 -v buun-models:/models \
   ghcr.io/r0b0tlab/buun-llama:3090
 ```
 
@@ -72,8 +75,8 @@ Scripts are Python 3 stdlib. They talk to llama-server.
 | Gate | Command | Status |
 | --- | --- | --- |
 | VRAM budget t3 @ 262k | `python3 scripts/vram_budget.py 4.0 t3` | passed (22.3/24 GB) |
-| DFlash2 load + greedy generate | `scripts/acceptance_check.py --n 1` | unverified |
-| GSM8K n=40 AL and tok/s | `scripts/acceptance_check.py --n 40` | unverified |
+| DFlash2 load + greedy generate | `scripts/acceptance_check.py --n 1` | passed |
+| GSM8K n=40 AL and tok/s | `scripts/acceptance_check.py --n 40` | passed (AL 4.76, 111 tok/s) |
 | MTP and AR arms | serve `mtp.env` / `ar.env`, same script | unverified |
 | 262k load + 150k prefill + 200 decode | serve `dflash2-262k.env`, `scripts/long_context_check.py` | unverified |
 | T=1 sampled vs AR | `scripts/sampled_sanity_check.py` | unverified |

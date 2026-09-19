@@ -55,6 +55,7 @@ RUN cmake --build build -j"$(nproc)" --target llama-server \
     && find build -name 'libggml*.so*' -exec cp -P {} /out/lib/ \; \
     && find build -name 'libllama*.so*' -exec cp -P {} /out/lib/ \; \
     && git -C /src/buun rev-parse HEAD > /out/BUUN_SHA
+RUN find build -name 'lib*.so*' -exec cp -P {} /out/lib/ \;
 
 FROM nvidia/cuda:${CUDA_VERSION}-runtime-ubuntu${UBUNTU_VERSION} AS runtime
 ENV DEBIAN_FRONTEND=noninteractive
