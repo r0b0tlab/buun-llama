@@ -71,7 +71,7 @@ Scripts are Python 3 stdlib. They talk to llama-server.
 
 | Gate | Command | Status |
 | --- | --- | --- |
-| VRAM budget t3 @ 262k | `python3 scripts/vram_budget.py 4.0 t3` | unverified |
+| VRAM budget t3 @ 262k | `python3 scripts/vram_budget.py 4.0 t3` | passed (22.3/24 GB) |
 | DFlash2 load + greedy generate | `scripts/acceptance_check.py --n 1` | unverified |
 | GSM8K n=40 AL and tok/s | `scripts/acceptance_check.py --n 40` | unverified |
 | MTP and AR arms | serve `mtp.env` / `ar.env`, same script | unverified |

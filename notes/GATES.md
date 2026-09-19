@@ -4,7 +4,7 @@ Mirror of r0b0tlab/qwen38-exl3-dflash2 validation. Fill the Result column from a
 
 | Gate | Command | Result |
 | --- | --- | --- |
-| VRAM budget 4.00 bpw + t3 @ 262k | `python3 scripts/vram_budget.py 4.0 t3` | unverified |
+| VRAM budget 4.00 bpw + t3 @ 262k | `python3 scripts/vram_budget.py 4.0 t3` | passed — 22.3 / 24 GB, exit 0 |
 | llama-server DFlash2 load | `bash scripts/serve.sh recipes/dflash2-max.env` then `wait_ready.py` | unverified |
 | GSM8K n=40 DFlash2 | `acceptance_check.py --n 40` | unverified |
 | GSM8K n=40 MTP | serve `mtp.env`, same script | unverified |
