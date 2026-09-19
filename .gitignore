@@ -1,0 +1,11 @@
+models/
+work/
+__pycache__/
+*.pyc
+*.log
+.env
+buun-llama-cpp/
+container/.buildctx/
+notes/*.json
+notes/*.log
+eval/.cache/

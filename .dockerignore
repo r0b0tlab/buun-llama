@@ -1,0 +1,10 @@
+.git
+models/
+work/
+notes/
+eval/.cache/
+__pycache__/
+*.pyc
+*.log
+buun-llama-cpp/
+container/.buildctx/

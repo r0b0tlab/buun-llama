@@ -1,0 +1,9 @@
+# Engine pins for this package.
+# Re-fetch master and update both lines when you bump.
+
+BUUN_REPO=https://github.com/spiritbuun/buun-llama-cpp
+BUUN_SHA=1d0f493c73817176f6953069b7c10211de9555a1
+TARGET_HF=r0b0tlab/Qwen3.8-27B-EXL3-4.00bpw
+DRAFT_HF=r0b0tlab/Qwen3.8-27B-DFlash2-EXL3-4.00bpw
+CUDA_ARCH=86
+IMAGE_TAG=buun-llama:3090

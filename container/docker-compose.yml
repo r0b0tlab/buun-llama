@@ -1,0 +1,13 @@
+services:
+  buun:
+    image: ${IMAGE:-buun-llama:3090}
+    build:
+      context: ..
+      dockerfile: container/Dockerfile
+    ports:
+      - "8080:8080"
+    gpus: all
+    volumes:
+      - ${MODELS:-../models}:/models
+    environment:
+      RECIPE_FILE: /opt/buun-llama/recipes/${RECIPE:-dflash2-max}.env
