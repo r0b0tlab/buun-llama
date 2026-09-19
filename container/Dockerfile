@@ -85,4 +85,7 @@ ENV PATH="/usr/local/bin:${PATH}" \
     BIN=/usr/local/bin/llama-server
 
 EXPOSE 8080
+LABEL org.opencontainers.image.source="https://github.com/r0b0tlab/buun-llama" \
+      org.opencontainers.image.description="buun-llama.cpp EXL3 DFlash2 serve" \
+      org.opencontainers.image.licenses="MIT"
 ENTRYPOINT ["/opt/entrypoint.sh"]
