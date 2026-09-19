@@ -12,7 +12,9 @@ Buun DFlash2 on this tree, RTX 3090, GSM8K greedy n=40, ctx 8192, pin `1d0f493`,
 
 | arm | acceptance length | tok/s | status |
 | --- | ---: | ---: | --- |
-| buun DFlash2 (this repo) | 4.76 | 111.4 | passed |
+| buun DFlash2 8k (`dflash2-max`) | 4.76 | 111.4 | passed |
+| buun DFlash2 serve (`dflash2-262k`, GSM8K n=40) | 4.76 | 110.4 | passed |
+| buun DFlash2 NIAH ~262k decode | — | 28–30 | passed |
 | buun MTP (this repo) | 3.25 | 92.0 | passed |
 | buun AR (this repo) | 1.00 | 46.0 | passed |
 | ExLlamaV3 AR (twin) | 1.00 | 42.8 | baseline |
@@ -82,8 +84,8 @@ Scripts are Python 3 stdlib. They talk to llama-server.
 | MTP and AR arms | serve `mtp.env` / `ar.env`, same script | passed (MTP AL 3.25 / 92 tok/s; AR AL 1.00 / 46 tok/s) |
 | 262k load + 150k prefill + 200 decode | serve `dflash2-262k.env`, `scripts/long_context_check.py` | unverified |
 | T=1 sampled vs AR | `scripts/sampled_sanity_check.py` | unverified |
-| NIAH 2n / 3n at 262080 | `scripts/niah_multikey.py --variant 2n` | unverified |
-| Q200v2 | `scripts/r0b0bench_adapter.py` then r0b0bench kit | unverified |
+| NIAH 2n / 3n | `scripts/niah_multikey.py --variant 2n --target-tokens 261888 --max-tokens 256` | passed (261888 depth; 262080+thinking disclosed fail) |
+| Q200v2 | `scripts/r0b0bench_adapter.py` then r0b0bench kit | INCOMPLETE (150/9/21; hard_reasoning ungraded; details `notes/PUBLISH.md`) |
 
 Acceptance length uses `timings.predicted_n` and `timings.draft_n_accepted` from llama-server: `new_tokens / (new_tokens - accepted_draft_tokens)`.
 

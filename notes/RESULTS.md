@@ -7,6 +7,7 @@ Identity: buun `1d0f493c73817176f6953069b7c10211de9555a1`, image `buun-llama:309
 | arm | n | AL | tok/s | draft_stats | JSON |
 | --- | ---: | ---: | ---: | ---: | --- |
 | DFlash2 `dflash2-max` | 40 | 4.755 | 111.36 | 40/40 | notes/acceptance-dflash2.json |
+| DFlash2 `dflash2-262k` GSM8K | 40 | 4.756 | 110.41 | 40/40 | notes/acceptance-262k-serve-gsm8k.json |
 | MTP `mtp.env` | 40 | 3.246 | 92.03 | 40/40 | notes/acceptance-mtp.json |
 | AR `ar.env` | 10 | 1.000 | 46.04 | 0/10 | notes/acceptance-ar.json |
 
@@ -24,9 +25,13 @@ community `355c6ee`, same card/weights, GSM8K greedy ctx 8192:
 
 Buun DFlash2 is slower than native EXL3 DFlash2. Do not claim a speed win.
 
+## Serve profile (`dflash2-262k`)
+
+NIAH 2n/3n PASS at 261888. Decode ~28–30 tok/s. Q200v2 INCOMPLETE 150/9/21. See `notes/PUBLISH.md`.
+
 ## Unverified
 
-262k load, T=1 sampled, NIAH, Q200v2.
+T=1 sampled vs AR. `long_context_check.py` 150k/200 (NIAH covered long-ctx load+decode). Optional MMQ/block/adaptive.
 
 ## GHCR
 
