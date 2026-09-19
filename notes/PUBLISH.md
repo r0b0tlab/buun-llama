@@ -30,18 +30,18 @@ Depth 261888 = 262144 − 256 generate. Thinking on.
 
 ## Q200v2 text-180
 
-status INCOMPLETE (hard_reasoning manual). 180 rows, all `finish_reason=stop`, no length ceiling. Kit exit 2.
+status INCOMPLETE because ifeval-023 has empty `content` (transport hole). hard_reasoning regraded via `--manual-evidence` (19 pass, 1 fail). 180 rows, all `finish_reason=stop`, no length ceiling. Kit exit 2.
 
 | family | n | transported | graded | correct | accuracy |
 | --- | ---: | ---: | ---: | ---: | ---: |
 | gsm8k | 80 | 80 | 80 | 79 | 98.75 % |
 | humaneval | 40 | 40 | 40 | 39 | 97.5 % |
 | ifeval | 40 | 39 | 39 | 32 | 82.05 % |
-| hard_reasoning | 20 | 20 | 0 | — | ungraded |
+| hard_reasoning | 20 | 20 | 20 | 19 | 95.0 % |
 
-correct 150 / incorrect 9 / ungraded 21.
+correct 169 / incorrect 10 / ungraded 1.
 
-gsm8k-012 got 12 expected 13. humaneval-032 MODEL_REJECT. ifeval: seven scored misses. ifeval-023 empty content (`empty_response`). hard_reasoning 20/20 `manual_review_required`.
+gsm8k-012 got 12 expected 13. humaneval-032 MODEL_REJECT. ifeval: seven scored misses. ifeval-023 empty content — cannot grade, still the only ungraded row. hard-06 FAIL: heapify ranked as Theta(log n); Floyd heapify is Theta(n). Evidence: `runs/q200v2-buun-serve/manual-evidence.json`, reviewer hermes-agent, method independent_manual_review.
 
 Telemetry LOAD-ONLY (464 samples, util>0): power mean 336.7 / max 348.3 W; temp max 60 C; VRAM max 22996 MiB. Throttle 0x0 / 0x1 idle / 0x4 SW cap. Not 0x40 thermal.
 

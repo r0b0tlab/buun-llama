@@ -85,7 +85,7 @@ Scripts are Python 3 stdlib. They talk to llama-server.
 | 262k load + 150k prefill + 200 decode | serve `dflash2-262k.env`, `scripts/long_context_check.py` | unverified |
 | T=1 sampled vs AR | `scripts/sampled_sanity_check.py` | unverified |
 | NIAH 2n / 3n | `scripts/niah_multikey.py --variant 2n --target-tokens 261888 --max-tokens 256` | passed (261888 depth; 262080+thinking disclosed fail) |
-| Q200v2 | `scripts/r0b0bench_adapter.py` then r0b0bench kit | INCOMPLETE (150/9/21; hard_reasoning ungraded; details `notes/PUBLISH.md`) |
+| Q200v2 | `scripts/r0b0bench_adapter.py` then r0b0bench kit | INCOMPLETE (169/10/1; hard 19/20; ifeval-023 empty; `notes/PUBLISH.md`) |
 
 Acceptance length uses `timings.predicted_n` and `timings.draft_n_accepted` from llama-server: `new_tokens / (new_tokens - accepted_draft_tokens)`.
 

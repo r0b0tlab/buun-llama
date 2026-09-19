@@ -13,6 +13,6 @@ Identity: `BUUN_SHA=1d0f493c73817176f6953069b7c10211de9555a1`.
 | 262k + 150k prefill + 200 decode | `dflash2-262k.env` + `long_context_check.py` | unverified |
 | T=1 sampled vs AR | `sampled_sanity_check.py` | unverified |
 | NIAH 2n / 3n | `niah_multikey.py --target-tokens 261888 --max-tokens 256` | passed — 261888 depth. 262080+thinking FAIL (64-token cap), disclosed |
-| Q200v2 text-180 | adapter :8889 + kit | INCOMPLETE — 150/9/21; gsm8k 79/80; humaneval 39/40; ifeval 32/39; hard ungraded; ifeval-023 empty; BFCL NOT_IMPLEMENTED |
+| Q200v2 text-180 | adapter :8889 + kit | INCOMPLETE — 169/10/1 after manual hard_reasoning (19/20); ifeval-023 empty; BFCL NOT_IMPLEMENTED |
 | Container image smoke | docker build + /health | passed |
 | GHCR public pull | anonymous manifest | blocked — package private, visibility API 404 |

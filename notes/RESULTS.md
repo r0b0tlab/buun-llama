@@ -27,7 +27,7 @@ Buun DFlash2 is slower than native EXL3 DFlash2. Do not claim a speed win.
 
 ## Serve profile (`dflash2-262k`)
 
-NIAH 2n/3n PASS at 261888. Decode ~28–30 tok/s. Q200v2 INCOMPLETE 150/9/21. See `notes/PUBLISH.md`.
+NIAH 2n/3n PASS at 261888. Decode ~28–30 tok/s. Q200v2 INCOMPLETE 169/10/1 (hard 19/20). See `notes/PUBLISH.md`.
 
 ## Unverified
 
