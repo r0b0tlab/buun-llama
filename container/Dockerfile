@@ -40,12 +40,14 @@ RUN cmake -B build -G Ninja \
         -DGGML_NATIVE=OFF \
         -DGGML_CUDA_FA=ON \
         -DGGML_CUDA_FA_ALL_QUANTS=ON \
+        -DGGML_CUDA_NCCL=OFF \
         -DCMAKE_CUDA_ARCHITECTURES=${CUDA_ARCH} \
         -DLLAMA_BUILD_TESTS=OFF \
-        -DLLAMA_CURL=ON \
-    && cmake --build build -j"$(nproc)" --target llama-server llama-cli llama-bench llama-perplexity \
+        -DLLAMA_BUILD_SERVER=ON \
+        -DLLAMA_CURL=ON
+RUN cmake --build build -j"$(nproc)" --target llama-server \
     && mkdir -p /out/bin /out/lib \
-    && cp build/bin/llama-server build/bin/llama-cli build/bin/llama-bench build/bin/llama-perplexity /out/bin/ \
+    && cp build/bin/llama-server /out/bin/ \
     && find build -name 'libggml*.so*' -exec cp -P {} /out/lib/ \; \
     && find build -name 'libllama*.so*' -exec cp -P {} /out/lib/ \; \
     && git -C /src/buun rev-parse HEAD > /out/BUUN_SHA
@@ -54,7 +56,7 @@ FROM nvidia/cuda:${CUDA_VERSION}-runtime-ubuntu${UBUNTU_VERSION} AS runtime
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
-        ca-certificates libgomp1 libssl3 curl python3 \
+        ca-certificates libgomp1 libssl3 libcurl4 curl python3 \
     && rm -rf /var/lib/apt/lists/*
 
 COPY --from=build /out/bin/ /usr/local/bin/
