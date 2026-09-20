@@ -3,18 +3,23 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#fafaf8">
-<title>buun-llama — RTX 3090 performance report</title>
-<meta name="description" content="Qwen3.8-27B EXL3 on one RTX 3090. Measured throughput, 262k context, dynamic KV cache, storage, telemetry, and completed benchmark adjudication.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='8' fill='%232c45d9'/%3E%3Cpath d='M12 9v22h8a7 7 0 0 0 0-14h-8m0 7h9' stroke='white' fill='none' stroke-width='4'/%3E%3C/svg%3E">
+<title>r0b0tlab — RTX 3090 Inference Report</title>
+<meta property="og:site_name" content="r0b0tlab">
+<meta property="og:title" content="r0b0tlab — RTX 3090 Inference Report">
+<meta property="og:description" content="27 billion parameters. One graphics card. Measured inference results from r0b0tlab.">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="r0b0tlab — RTX 3090 Inference Report">
+<meta name="description" content="r0b0tlab inference research: Qwen3.8-27B EXL3 on one RTX 3090. Measured throughput, 262k context, dynamic KV cache, storage, telemetry, and completed benchmark adjudication.">
+<link rel="icon" type="image/png" href="r0b0tlab.png">
 <link rel="stylesheet" href="style.css"><script src="app.js" defer></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to results</a>
-<header class="mast"><a class="brand" href="#"><span class="mark">b.</span>buun-llama<span class="brand-sub">/ research</span></a><nav aria-label="Main"><a href="#performance">Performance</a><a href="#memory">Memory</a><a href="#telemetry">Telemetry</a><a href="#quality">Quality</a></nav><a class="repo-link" href="https://github.com/r0b0tlab/buun-llama">Source <span aria-hidden="true">↗</span></a></header>
+<header class="mast"><a class="brand" href="https://github.com/r0b0tlab"><img class="brand-avatar" src="r0b0tlab.png" alt="" width="38" height="38"><span class="wordmark">r0b0tlab</span><span class="brand-sub">/ inference lab</span></a><nav aria-label="Main"><a href="#performance">Performance</a><a href="#memory">Memory</a><a href="#telemetry">Telemetry</a><a href="#quality">Quality</a></nav><a class="repo-link" href="https://github.com/r0b0tlab/buun-llama">Source <span aria-hidden="true">↗</span></a></header>
 <main id="main">
 <section class="hero" aria-labelledby="title">
-<div class="eyebrow"><span class="status-dot"></span> MEASURED ON RTX 3090 <span class="issue">FIELD REPORT / 01</span></div>
-<div class="hero-title"><h1 id="title">27 billion parameters.<br><span>One graphics card.</span></h1><p>Qwen3.8-27B, served with native EXL3 and DFlash2. A measured profile for throughput and long context on 24&nbsp;GB.</p></div>
+<div class="eyebrow"><span class="status-dot"></span> R0B0TLAB / INFERENCE RESEARCH <span class="issue">RTX 3090 / REPORT 01</span></div>
+<div class="hero-title"><h1 id="title">27 billion parameters.<br><span>One graphics card.</span></h1><p>A r0b0tlab study of Qwen3.8-27B on 24&nbsp;GB. Native EXL3 and DFlash2, served by buun-llama-cpp. Throughput, memory, and quality measured together.</p></div>
 <div class="hero-grid">
 <div class="hero-number"><div class="micro">GSM8K · 40-REQUEST THROUGHPUT PROBE</div><div class="display"><span data-value="speed">149.2</span><span class="unit">tok/s</span></div><p>Mean end-to-end generation speed</p><div class="hero-bottom"><span class="tag">4.00 bpw EXL3</span><span class="tag">DFlash2 / adaptive 8</span><span class="tag">Low reasoning</span></div></div>
 <div class="hero-plot"><div class="plot-top"><span class="micro">EVERY REQUEST, IN ORDER</span><span class="micro">E2E TOK/S</span></div><svg id="request-chart" viewBox="0 0 560 170" role="img" aria-label="Measured throughput for all 40 GSM8K requests"></svg><div class="plot-footer"><span>01</span><span><i class="key-blue"></i> Measured speed <i class="key-amber"></i> Token cap</span><span>40</span></div><p class="caption">One request reached the 512-token probe cap. All 40 are included in the mean (dashed line).</p></div>
@@ -49,6 +54,6 @@
   dflash2-optimized</pre><p class="caption">GHCR authentication was required at publication. Mount the qwen38-27b-exl3 and dflash2-exl3 directories under /models.</p><p id="copy-feedback" role="status"></p></div><div class="download-links"><a href="data.json" download><span>Report data<small>Measured metrics, storage inventory & full chart trace</small></span>↓</a><a href="recipe.env" download><span>Serving recipe<small>Embedded final low-default configuration</small></span>↓</a><a href="https://github.com/r0b0tlab/buun-llama/tree/01e45396d9387e1a624cb037aa4e2a0100e78631/metrics/optimized"><span>Frozen evidence<small>Raw result summaries, adjudication & provenance</small></span>↗</a><a href="https://github.com/spiritbuun/buun-llama-cpp/tree/1d0f493c73817176f6953069b7c10211de9555a1"><span>Upstream engine<small>spiritbuun / buun-llama-cpp</small></span>↗</a></div></div>
 <dl class="identity"><div><dt>ENGINE COMMIT</dt><dd>1d0f493c73817176f6953069b7c10211de9555a1</dd></div><div><dt>IMAGE ID / SHA256</dt><dd>8d6d67a5b1ac856882731d5638b1291f5b81f89f75ac8e664df39cd7991b5652</dd></div><div><dt>RECIPE / SHA256</dt><dd>bc2e27fdaba716aabb5ede98043b143dab8298b272f57fc719497f0b5776fe81</dd></div></dl>
 </section>
-</main><footer><a class="brand" href="#"><span class="mark">b.</span>buun-llama</a><p>A measured runtime report by r0b0tlab.<br><span id="snapshot-date">Storage & runtime snapshot: September 20, 2026.</span></p><a href="https://github.com/r0b0tlab/buun-llama">Explore the repository ↗</a></footer>
+</main><footer><a class="brand" href="https://github.com/r0b0tlab"><img class="brand-avatar" src="r0b0tlab.png" alt="" width="38" height="38"><span class="wordmark">r0b0tlab</span></a><p>r0b0tlab / Inference research. Engine: buun-llama-cpp.<br><span id="snapshot-date">Storage & runtime snapshot: September 20, 2026.</span></p><a href="https://github.com/r0b0tlab/buun-llama">Explore the repository ↗</a></footer>
 <noscript><p class="no-js">Enable JavaScript to display charts and the storage breakdown. Key results remain visible above; the complete report data is available as a JSON download.</p></noscript>
 </body></html>

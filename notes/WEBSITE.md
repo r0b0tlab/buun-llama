@@ -1,6 +1,10 @@
-# Results website
+# r0b0tlab results website
 
-Public report: https://blissful-ritual-rd6v.here.now/
+Title: `r0b0tlab — RTX 3090 Inference Report`. Header, footer, favicon and social title use r0b0tlab; buun-llama-cpp remains the engine attribution. The unmodified organization avatar is sourced from the public r0b0tlab GitHub profile (`https://avatars.githubusercontent.com/u/283511860?v=4`). Purple charts use a darker companion shade for contrast.
+
+Rebrand verification: fresh live Chromium checks passed at 320/390/768/1440 pixels, including page title, both wordmarks, avatar loading, telemetry tabs, asset hashes and no horizontal overflow. Benchmark data and recipe bytes were unchanged.
+
+Public report: https://keen-kettle-2wxt.here.now/
 
 Source: `website/` (static HTML, CSS, JavaScript, JSON and recipe; no build step).
 
@@ -27,7 +31,7 @@ Open http://localhost:8766/. Charts fetch `data.json`, so use HTTP rather than o
 
 ## Deployment
 
-Published with the here.now skill helper. Final verified version: `01M2ZY968AMY9YVWHDK61EYRR2`.
+Published with the here.now skill helper. Final verified version: `01M304D7PR1EAW65XNYPS14718`. The previous site rejected update authorization, so the r0b0tlab-branded edition was deployed at a new URL; the earlier site was left untouched.
 
 Deployment was anonymous and expires 24 hours after initial creation unless claimed. The owner claim URL is private and is not included in this repository. `.herenow/` is ignored and must never be added to the public site or repository. Updating the same slug uses local state for optimistic version checks.
 
