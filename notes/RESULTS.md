@@ -1,6 +1,6 @@
 # Results
 
-Current final-profile evidence is in `metrics/optimized/` and `notes/OPTIMIZED-PROFILE.md`: GSM8K: 149.19 mean E2E tok/s, AL 5.917; 150k/200 decode passed; NIAH 2n/3n passed; Q200v2: 171/8/1 (capped ifeval-023); BFCL structural-hard20 scored13/20. T=1 smoke completed48 requests per arm and is not a formal losslessness proof. The tables below are historical, not substitutes for final-image results.
+Current final-profile evidence is in `metrics/optimized/` and `notes/OPTIMIZED-PROFILE.md`: GSM8K: 149.19 mean E2E tok/s, AL 5.917; 150k/200 decode passed; NIAH 2n/3n passed; Q200v2 completed adjudication: 171 correct / 9 failed / 0 pending (capped ifeval-023 counted failed; original kit accounting unchanged); BFCL structural-hard20 scored13/20. T=1 smoke completed48 requests per arm and is not a formal losslessness proof. The tables below are historical, not substitutes for final-image results.
 
 Identity: buun `1d0f493c73817176f6953069b7c10211de9555a1`, image `buun-llama:3090`, host port 8888, ctx 8192, `-fa on --jinja`, VBR default. Weights: published EXL3 4.00 bpw target + DFlash2 sidecar.
 

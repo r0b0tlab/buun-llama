@@ -14,12 +14,12 @@ The production suite was run against image `sha256:8d6d67a5b1ac856882731d5638b12
 | Mixed short requests | aggregate107.95 tok/s; median TTFT0.175s |
 | 150000-token prefill + 200 decode | passed; prefill525.30 tok/s, decode27.84 tok/s |
 | NIAH 2n/3n | passed at261888 input tokens, 256-token response reserve |
-| Q200v2 text-180 | INCOMPLETE:171 correct /8 incorrect /1 ungraded; all20 manual reasoning rows reviewed |
+| Q200v2 text-180 | Adjudication complete: 171 correct / 9 failed / 0 pending; capped row counted as failed |
 | BFCL v4 structural-hard20 | SCORED:13/20 correct;20 unique cases; zero timing errors |
 | Q200v2 E2E throughput | mean138.70 /median144.78 /aggregate124.71 tok/s |
 | Peak VRAM across primary suite | 23518 MiB |
 
-Q200v2 `ifeval-023` reached the fixed8192-token output cap without a final answer. The cap was not raised and the row was not regenerated. BFCL is the frozen structural-complexity subset, not the official full200-case category score. See [full findings](notes/OPTIMIZED-PROFILE.md), [gate status](notes/GATES.md), and [machine-readable evidence](metrics/optimized/).
+Q200v2 outcome grading is complete: `ifeval-023` is counted as failed after reaching the fixed 8192-token cap without a final answer. The original kit summary still records its transport/closure status as `INCOMPLETE`; it is preserved unchanged. See [the completed adjudication](notes/Q200V2-ADJUDICATION.md). No cap increase or response regeneration was used. BFCL is the frozen structural-complexity subset, not the official full200-case category score. See [full findings](notes/OPTIMIZED-PROFILE.md), [gate status](notes/GATES.md), and [machine-readable evidence](metrics/optimized/).
 
 ## Run
 

@@ -1,0 +1,87 @@
+{
+  "schema": "q200v2.completed-adjudication.v1",
+  "status": "ADJUDICATED_COMPLETE",
+  "scope": "Supplemental all-row outcome adjudication; not a replacement for the frozen kit transport/closure result.",
+  "policy": "Retain existing valid grades; count the exhausted-budget response that supplies no substantive final answer as failed. No regeneration or cap increase.",
+  "run_id": "q200v2-buun-optimized-final-20260919",
+  "run_identity_sha256": "280f716ac96680d46e72593f2f048ef12eb255d90f1cc30a214833104cc82f1f",
+  "dataset_sha256": "66a75701cbeea69f212e1c8be92aab9efaf3fa4d7af3c6911c8f7864a17d8d14",
+  "source_summary": "metrics/optimized/q200v2-summary.json",
+  "source_summary_sha256": "24627296ef85438ca56a3fb439052a6db15922c64400e0b7ad99db02146bf3a8",
+  "raw_rows_sha256": "8ef771eccc77e4d950420b7cc10d9db5db137a0dcc390ec35edf9fa39733658c",
+  "execution_complete": true,
+  "grading_complete": true,
+  "total_count": 180,
+  "graded_count": 180,
+  "correct_count": 171,
+  "failed_count": 9,
+  "ungraded_count": 0,
+  "families": {
+    "gsm8k": {
+      "n": 80,
+      "correct": 79,
+      "failed": 1,
+      "graded": 80,
+      "pending": 0,
+      "accuracy_pct": 98.75,
+      "transported": 80
+    },
+    "hard_reasoning": {
+      "n": 20,
+      "correct": 19,
+      "failed": 1,
+      "graded": 20,
+      "pending": 0,
+      "accuracy_pct": 95.0,
+      "transported": 20
+    },
+    "humaneval": {
+      "n": 40,
+      "correct": 39,
+      "failed": 1,
+      "graded": 40,
+      "pending": 0,
+      "accuracy_pct": 97.5,
+      "transported": 40
+    },
+    "ifeval": {
+      "n": 40,
+      "correct": 34,
+      "failed": 6,
+      "graded": 40,
+      "pending": 0,
+      "accuracy_pct": 85.0,
+      "transported": 39
+    }
+  },
+  "official_kit": {
+    "status": "INCOMPLETE",
+    "correct_count": 171,
+    "incorrect_count": 8,
+    "ungraded_count": 1,
+    "transport_complete": false,
+    "transport_count": 179
+  },
+  "adjudications": [
+    {
+      "id": "ifeval-023",
+      "family": "ifeval",
+      "passed": false,
+      "verdict": "FAILED_NO_SUBSTANTIVE_ANSWER_AT_TOKEN_CAP",
+      "reviewer": "Hermes",
+      "content": " ",
+      "content_sha256": "36a9e7f1c95b82ffb99743e0c5c4ce95d83c9a430aac59f84ef3cbfab6145068",
+      "response_sha256": "2b7e98459f77bfb8df4f632ef66cc0c18109952601b8d4406532d68df9206eee",
+      "finish_reason": "length",
+      "completion_tokens": 8192,
+      "request_max_tokens": 8192,
+      "original_content_grader": {
+        "checks": [],
+        "passed": false,
+        "reason": "empty_response",
+        "status": "scored"
+      },
+      "rationale": "The request requires a logic quiz about a chesterfield with at most one letter t. The saved final content is whitespace, not a quiz. Generation exhausted the fixed8192-token budget. This is a failed task outcome; no answer is reconstructed from reasoning text."
+    }
+  ]
+}

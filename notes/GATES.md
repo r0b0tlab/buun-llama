@@ -15,7 +15,7 @@ The suite completed. Overall quality qualification is NOT all-green: Q200v2 reta
 | Queued clients | passed:1,2,4 client batches all returned positive token counts; one active slot, not multi-slot batching |
 | Long context | passed:150000 prompt tokens +200 new tokens,no truncation;525.30 prefill tok/s,27.84 decode tok/s |
 | NIAH2n /3n | passed:261888 input tokens +256 response reserve;32.78/32.98 decode tok/s |
-| Q200v2 text-180 | INCOMPLETE:171 correct /8 incorrect /1 ungraded; ifeval-023 hit8192 output cap, no final answer |
+| Q200v2 text-180 | Outcome grading complete: 171 correct / 9 failed / 0 pending. ifeval-023 adjudicated failed at the cap; original kit transport status remains INCOMPLETE. See notes/Q200V2-ADJUDICATION.md. |
 | Manual reasoning grading | complete:19/20; hard-13 wrong triangle-pursuit distance |
 | BFCL structural-hard20 | SCORED:13 correct /7 incorrect;20 unique cases,zero timing errors |
 | T=1 sampling smoke vs AR | completed:48 requests per arm; no transport errors; not a distribution-equivalence proof |

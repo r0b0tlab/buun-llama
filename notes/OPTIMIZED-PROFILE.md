@@ -73,8 +73,8 @@ Throughput screening preceded quality qualification. Every final result here use
 - Queued clients: all1/2/4 client batches completed. This is one active slot, not multi-slot batching.
 - Long-context test:150000 prompt tokens and200 generated; prefill525.30 tok/s, decode27.84 tok/s, no truncation.
 - NIAH2n/3n: PASS at261888 input tokens plus256 response reserve. Decode32.78/32.98 tok/s; wall664.5/666.5s. Full prompt counts recorded; no warm-prefix speed claim.
-- Canonical Q200v2 text-180:171 correct /8 incorrect /1 ungraded. Families: GSM8K79/80; HumanEval39/40; IFEval34/39 graded plus1 capped; hard reasoning19/20 after response-bound manual review.
-- Q200v2 remains INCOMPLETE: ifeval-023 reached8192 generated tokens with no final answer. The cap was not raised and the failed response was not regenerated. A prior candidate's172/8/0 does not substitute for this result.
+- Completed Q200v2 outcome adjudication: 171 correct / 9 failed / 0 pending. Families: GSM8K 79/80; HumanEval 39/40; IFEval 34/40 (including the capped failure); hard reasoning 19/20. See `notes/Q200V2-ADJUDICATION.md` and `metrics/optimized/q200v2-adjudicated.json`.
+- The frozen kit output remains INCOMPLETE (171/8/1) as an unchanged transport/closure record. Our supplemental review resolves its pending ifeval-023 to failed: it exhausted 8192 tokens without a quiz. The cap was not raised and the response was not regenerated. Completed grading does not erase the failure or confer an all-green qualification.
 - Q200v2 E2E: mean138.70,median144.78,aggregate124.71 tok/s;111149 completion tokens over891.30 summed request seconds, including the capped row.
 - BFCL v4 multi_turn_base structural-hard20: SCORED13 correct /7 incorrect,20 unique cases,zero timing errors. It is not the full-category leaderboard score.
 - BFCL setup first failed on import-created housekeeping locks, then a missing timing binding. The scored attempt used a fresh root, locks outside that root, and an explicit timing file. Frozen harness/data/grader files remained unchanged; compatibility bootstrap hash is retained.

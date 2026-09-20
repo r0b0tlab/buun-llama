@@ -15,7 +15,8 @@
     "queued_clients": "1/2/4 client batches completed on one active slot",
     "long_context": "150000 prompt + 200 generated; no truncation",
     "niah": "2n and 3n passed at261888 prompt tokens",
-    "q200v2": "INCOMPLETE:171 correct,8 incorrect,1 capped/ungraded (ifeval-023)",
+    "q200v2": "Official kit transport/closure INCOMPLETE (171/8/1), preserved unchanged",
+    "q200v2_adjudication": "COMPLETE:171 correct,9 failed,0 pending; q200v2-adjudicated.json",
     "bfcl": "SCORED:13/20 structural-hard20; zero timing errors",
     "sampling": "48 requests/arm completed; limited smoke, not losslessness proof"
   },
