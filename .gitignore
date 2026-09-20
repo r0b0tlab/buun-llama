@@ -9,3 +9,4 @@ container/.buildctx/
 notes/*.json
 notes/*.log
 eval/.cache/
+.herenow/

@@ -1,5 +1,7 @@
 # Qwen3.8-27B EXL3 on buun-llama-cpp
 
+[Interactive results website](https://blissful-ritual-rd6v.here.now/) — throughput, KV cache, storage, telemetry and completed outcome grading. [Source and measurement notes](notes/WEBSITE.md). The initial here.now deployment expires after 24 hours unless claimed.
+
 Native EXL3 serving with [spiritbuun/buun-llama-cpp](https://github.com/spiritbuun/buun-llama-cpp), pinned to `1d0f493c73817176f6953069b7c10211de9555a1`. Target: [Qwen3.8-27B EXL3 4.00 bpw](https://huggingface.co/r0b0tlab/Qwen3.8-27B-EXL3-4.00bpw). Draft: [DFlash2 EXL3 4.00 bpw](https://huggingface.co/r0b0tlab/Qwen3.8-27B-DFlash2-EXL3-4.00bpw).
 
 ## Optimized RTX 3090 profile
