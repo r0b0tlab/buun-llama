@@ -8,3 +8,5 @@ __pycache__/
 *.log
 buun-llama-cpp/
 container/.buildctx/
+recipes/opt-scratch.env
+scripts/finish_overnight.sh

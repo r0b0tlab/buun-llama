@@ -1,5 +1,7 @@
 # Results
 
+Current final-profile evidence is in `metrics/optimized/` and `notes/OPTIMIZED-PROFILE.md`: GSM8K: 149.19 mean E2E tok/s, AL 5.917; 150k/200 decode passed; NIAH 2n/3n passed; Q200v2: 171/8/1 (capped ifeval-023); BFCL structural-hard20 scored13/20. T=1 smoke completed48 requests per arm and is not a formal losslessness proof. The tables below are historical, not substitutes for final-image results.
+
 Identity: buun `1d0f493c73817176f6953069b7c10211de9555a1`, image `buun-llama:3090`, host port 8888, ctx 8192, `-fa on --jinja`, VBR default. Weights: published EXL3 4.00 bpw target + DFlash2 sidecar.
 
 ## GSM8K greedy, this tree (RTX 3090)
@@ -29,9 +31,9 @@ Buun DFlash2 is slower than native EXL3 DFlash2. Do not claim a speed win.
 
 NIAH 2n/3n PASS at 261888. Decode ~28–30 tok/s. Q200v2 INCOMPLETE 169/10/1 (hard 19/20). See `notes/PUBLISH.md`.
 
-## Unverified
+## Historical scope
 
-T=1 sampled vs AR. `long_context_check.py` 150k/200 (NIAH covered long-ctx load+decode). Optional MMQ/block/adaptive.
+The older runs did not include the full serving sweep or sampling controls. Use `notes/GATES.md` for current status; do not infer a final-image pass from these historical rows.
 
 ## GHCR
 

@@ -1,0 +1,13 @@
+{
+  "scope": "Q200 interval only, GPU utilization >0",
+  "load_samples": 428,
+  "mean_power_w": 340.9796261682243,
+  "max_power_w": 348.23,
+  "max_temperature_c": 60.0,
+  "max_vram_mib": 18222.0,
+  "mean_gpu_clock_mhz": 1744.9065420560748,
+  "throttle_flags": [
+    "0x0000000000000004"
+  ],
+  "niah_and_q200_max_vram_mib": 23538.0
+}

@@ -1,0 +1,12 @@
+{
+  "summary": {
+    "n": 6,
+    "tokens": 1305,
+    "aggregate_tps": 107.94887708211152,
+    "mean_tps": 115.91289617255326,
+    "median_ttft_s": 0.17491715398500673,
+    "median_decode_tps": 137.6838272223428,
+    "accepted_fraction": 0.44328965205603255
+  },
+  "reasoning_effort": "low (server default)"
+}

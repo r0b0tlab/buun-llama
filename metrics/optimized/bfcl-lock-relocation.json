@@ -1,0 +1,6 @@
+{
+  "scope": "housekeeping lock path only; frozen files unmodified",
+  "result_root": "bfcl-production",
+  "locks_root": "bfcl-production-locks",
+  "bootstrap_sha256": "19e28ad1bc40a1c249bf1827cf84cc573aa558508c0a99b5353f404813e25aec"
+}

@@ -1,0 +1,129 @@
+{
+  "schema": "r0b0tlab.qwen38.manual_evidence.v1",
+  "dataset_sha256": "66a75701cbeea69f212e1c8be92aab9efaf3fa4d7af3c6911c8f7864a17d8d14",
+  "run_identity_sha256": "280f716ac96680d46e72593f2f048ef12eb255d90f1cc30a214833104cc82f1f",
+  "reviewer": "Hermes",
+  "method": "independent_manual_review",
+  "rows": [
+    {
+      "id": "hard-00",
+      "content_sha256": "004926683e92036c252a79e3cb528d226bf3c9ba5d7ee1f54a59a79664c8b07c",
+      "passed": true,
+      "rationale": "Consecutive-integer factorization proves divisibility by 6; odd prime neighbors supply factors 8 and 3 for divisibility by 24."
+    },
+    {
+      "id": "hard-01",
+      "content_sha256": "8dae9a57ed62cdd4bd9d6652dc04ead7a0f388f0cc54352d93517da86f1754e2",
+      "passed": true,
+      "rationale": "Gap symmetry gives 1+9/4=13/4 draws, matching the exact reference."
+    },
+    {
+      "id": "hard-02",
+      "content_sha256": "ab1d7a1c9883dcaf755188252094395fa8cf3a5319df0fd5b7420b3075f7b51c",
+      "passed": true,
+      "rationale": "Lists all four nonnegative solutions (53,52),(19,16),(13,8),(11,4) from positive odd factor pairs."
+    },
+    {
+      "id": "hard-03",
+      "content_sha256": "4a7e8be71e6f664e004be94aee9a22226313fd8bab1fbfc7d712da7296626f8d",
+      "passed": true,
+      "rationale": "Exactly five sentences give the coprime p/q contradiction through even p and q."
+    },
+    {
+      "id": "hard-04",
+      "content_sha256": "dbf1e355b9250094d4e6fdacb2e5c0f0f76aa80f6fa19d30b2180401497bad40",
+      "passed": true,
+      "rationale": "Final determinant 1/6048000 matches the exact rational oracle. The written row-operation multiplier in step2 is incorrect; final-answer grade passes the requested exact-fraction task, with that derivation error disclosed."
+    },
+    {
+      "id": "hard-05",
+      "content_sha256": "230abce5a39f46b9948ef689cdfca1434cdbcd1302b74c6ce328b3bf0478bff5",
+      "passed": true,
+      "rationale": "Uses the reference discrete recurrence a_n=a_(n-1)-4, initial 100, reaching zero at hour25."
+    },
+    {
+      "id": "hard-06",
+      "content_sha256": "0fb34a17a78c9066bb00b8a6a36dd906d784f3bda941686988b71fffadb59b11",
+      "passed": true,
+      "rationale": "Correctly distinguishes single-node sift-down Theta(log n) from full build-heap Theta(n), and ranks BFS, mergesort, quicksort and binary search correctly. Unlike the previous run, explicitly includes the reference build-heap interpretation."
+    },
+    {
+      "id": "hard-07",
+      "content_sha256": "84f328129d376cfd36061cab9f1384b7a351be6d6023daf7fe92aeaed7d7215e",
+      "passed": true,
+      "rationale": "Conditional head probability is C(9,2)/C(10,3)=3/10."
+    },
+    {
+      "id": "hard-08",
+      "content_sha256": "dd4792a0d642543daf2bb2727a085fccdf4383aaea94e80c891af2c6739340a8",
+      "passed": true,
+      "rationale": "Final requested answer29 follows the correct coprime Frobenius formula. Several optional representation examples are arithmetically wrong; those are disclosed and not relied on for this final-answer grade."
+    },
+    {
+      "id": "hard-09",
+      "content_sha256": "fec5906b150795e67a5b0adb4706dcb96bd362b3d04fdf219c9406ca449ded3f",
+      "passed": true,
+      "rationale": "The full transition table implements (2r+b) mod3, accepting remainder0; distinguishes all three states. Optional ASCII diagram has ambiguous/incorrect arrows; explicit table satisfies the requested DFA."
+    },
+    {
+      "id": "hard-10",
+      "content_sha256": "ea2af4eb830805893581caeaedd256edf45d65d4cbaefea06139e2156fd7bd69",
+      "passed": true,
+      "rationale": "Gamma(3)=2, with valid integration-by-parts reasoning."
+    },
+    {
+      "id": "hard-11",
+      "content_sha256": "6ccbb9a9255e2f44b0d551bb1f5284d5f8d85cdbb970f03b1423de6f6e7cb823",
+      "passed": true,
+      "rationale": "Logarithmic differentiation of right-associated x^(x^x) yields derivative1 at x=1."
+    },
+    {
+      "id": "hard-12",
+      "content_sha256": "fdd6365c5beb5d03bedc9ea3a169d5041b3e57d9abe7a99e987d023221b5e3d5",
+      "passed": true,
+      "rationale": "Finite-case non-backtracking-walk proof is valid. Infinite binary tree supplies the unqualified counterexample: root degree2, others degree3, no cycles."
+    },
+    {
+      "id": "hard-13",
+      "content_sha256": "ce3019b2a83de712a4a50999ccfdbb4c7ff5e43a267f3a0cf208f7d4849059da",
+      "passed": false,
+      "rationale": "Incorrect distance2. The projection of the chased ant velocity onto AB is cos120=-1/2, not +1/2, so side shrinks at3/2 and each ant travels2/3."
+    },
+    {
+      "id": "hard-14",
+      "content_sha256": "de386236b983bb1f479e0fff092bd2f74c992515bb13b18e4d2e47c7fb7fb00d",
+      "passed": true,
+      "rationale": "Eight complement pairs, two output choices each, yield256 self-dual Boolean functions."
+    },
+    {
+      "id": "hard-15",
+      "content_sha256": "b507e896afd485ec5d263fa3c34a2359780f68aa240d9c24d85da9bef5644f40",
+      "passed": true,
+      "rationale": "Binomial theorem at -1 gives zero for n=17."
+    },
+    {
+      "id": "hard-16",
+      "content_sha256": "01828e872a5d4df6ac7ca203a62bd878faf122e846dce8ffc350ec7cb2b2f955",
+      "passed": true,
+      "rationale": "Uniform lift solves 2*pi*h=1, giving1/(2*pi) meters."
+    },
+    {
+      "id": "hard-17",
+      "content_sha256": "b16dad7d718ba02eb103cfc0d7d3a0a7831ca4d2a50bfe837d58b02895d0d7ea",
+      "passed": true,
+      "rationale": "Identifies look-and-say and the iterative read-off recurrence expected by the reference. The auxiliary OEIS citation and categorical closed-form claim are not used as evidence."
+    },
+    {
+      "id": "hard-18",
+      "content_sha256": "eac5d919af9344ba3c0fe1c2b04a2d1e4ea5c85a60f537246f7cf01676abb4bd",
+      "passed": true,
+      "rationale": "Four half-side subsquares and pigeonhole give a pair separated by at most sqrt(2)/2."
+    },
+    {
+      "id": "hard-19",
+      "content_sha256": "fe31fb82fd87d5ae88237c900a15f93f5ff6a6b2e715ffaa792b23270dbd6cea",
+      "passed": true,
+      "rationale": "Two of the six equally likely ordered dice outcomes summing to7 contain a6; gives1/3."
+    }
+  ]
+}

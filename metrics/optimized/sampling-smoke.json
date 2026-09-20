@@ -1,0 +1,27 @@
+{
+  "method": "48 requests/arm; low reasoning, T1 top-p.95 top-k20, actual token counts; raw output includes reasoning; not distribution-equivalence proof",
+  "dflash2": {
+    "n": 48,
+    "actual_tokens": 10274,
+    "aggregate_tps": 90.94279389307637,
+    "mean_chars": 950.4583333333334,
+    "distinct_word_fraction": 0.22631939684715557,
+    "top20_word_fraction": 0.2766278272789582,
+    "stop_types": {
+      "eos": 16,
+      "limit": 32
+    }
+  },
+  "autoregressive": {
+    "n": 48,
+    "actual_tokens": 10244,
+    "aggregate_tps": 46.233217214948255,
+    "mean_chars": 943.5625,
+    "distinct_word_fraction": 0.23177518085698387,
+    "top20_word_fraction": 0.27657206455203115,
+    "stop_types": {
+      "eos": 17,
+      "limit": 31
+    }
+  }
+}

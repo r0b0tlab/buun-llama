@@ -1,0 +1,14 @@
+{
+  "scope": "Final-image Q200 interval, GPU util>0",
+  "samples": 441,
+  "power_mean_w": 341.91185941043085,
+  "power_max_w": 348.73,
+  "temperature_max_c": 59.0,
+  "q200_vram_max_mib": 18276.0,
+  "whole_suite_vram_max_mib": 23518.0,
+  "gpu_clock_mean_mhz": 1746.0884353741496,
+  "mem_available_min_kb": 51777360.0,
+  "throttle_flags": [
+    "0x0000000000000004"
+  ]
+}

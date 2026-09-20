@@ -1,0 +1,8 @@
+{
+  "n": 180,
+  "mean_e2e_tps": 138.69999098933928,
+  "median_e2e_tps": 144.77969001257773,
+  "aggregate_e2e_tps": 124.70503253100196,
+  "completion_tokens": 111149,
+  "summed_request_seconds": 891.2952247726498
+}

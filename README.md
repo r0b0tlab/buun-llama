@@ -1,104 +1,86 @@
 # Qwen3.8-27B EXL3 on buun-llama-cpp
 
-Eval twin of [r0b0tlab/qwen38-exl3-dflash2](https://github.com/r0b0tlab/qwen38-exl3-dflash2). Same published EXL3 weights, same gates, engine is [spiritbuun/buun-llama-cpp](https://github.com/spiritbuun/buun-llama-cpp) at `1d0f493`.
+Native EXL3 serving with [spiritbuun/buun-llama-cpp](https://github.com/spiritbuun/buun-llama-cpp), pinned to `1d0f493c73817176f6953069b7c10211de9555a1`. Target: [Qwen3.8-27B EXL3 4.00 bpw](https://huggingface.co/r0b0tlab/Qwen3.8-27B-EXL3-4.00bpw). Draft: [DFlash2 EXL3 4.00 bpw](https://huggingface.co/r0b0tlab/Qwen3.8-27B-DFlash2-EXL3-4.00bpw).
 
-llama-server loads the EXL3 directories directly. DFlash2 rides as `-md`. VBR is the default KV cache. Turbo/TCQ, MTP, CopySpec, and the CUDA MoE cache flags are recipe files under `recipes/`.
+## Optimized RTX 3090 profile
 
-Weights: [r0b0tlab/Qwen3.8-27B-EXL3-4.00bpw](https://huggingface.co/r0b0tlab/Qwen3.8-27B-EXL3-4.00bpw) and [r0b0tlab/Qwen3.8-27B-DFlash2-EXL3-4.00bpw](https://huggingface.co/r0b0tlab/Qwen3.8-27B-DFlash2-EXL3-4.00bpw). Parents: [Qwen/Qwen3.8-27B](https://huggingface.co/Qwen/Qwen3.8-27B), [incoai/Qwen3.8-27B-DFlash2](https://huggingface.co/incoai/Qwen3.8-27B-DFlash2).
+`recipes/dflash2-optimized.env` uses low reasoning, DFlash2 block8 with adaptive depth, 262144 context, VBR turbo8 entry/turbo3 floor, one active slot, microbatch512, full GPU offload and flash attention. It exports its own draft settings; clients can override reasoning per request. Projected VBR prompt artifacts and auto-fit are explicitly disabled. Live-prefix reuse remains available.
 
-## Results
+The production suite was run against image `sha256:8d6d67a5b1ac856882731d5638b1291f5b81f89f75ac8e664df39cd7991b5652`, without a host recipe mount. **This is not a clean all-green production qualification:** Q200v2 retains one capped response. Model mistakes and failed setup attempts are disclosed, not erased.
 
-Buun DFlash2 on this tree, RTX 3090, GSM8K greedy n=40, ctx 8192, pin `1d0f493`, image `buun-llama:3090`. JSON: `notes/acceptance-dflash2.json`.
-
-| arm | acceptance length | tok/s | status |
-| --- | ---: | ---: | --- |
-| buun DFlash2 8k (`dflash2-max`) | 4.76 | 111.4 | passed |
-| buun DFlash2 serve (`dflash2-262k`, GSM8K n=40) | 4.76 | 110.4 | passed |
-| buun DFlash2 NIAH ~262k decode | — | 28–30 | passed |
-| buun MTP (this repo) | 3.25 | 92.0 | passed |
-| buun AR (this repo) | 1.00 | 46.0 | passed |
-| ExLlamaV3 AR (twin) | 1.00 | 42.8 | baseline |
-| ExLlamaV3 MTP (twin) | 4.12 | 116.3 | baseline |
-| ExLlamaV3 DFlash2 (twin) | 5.66 | 162.9 | baseline |
-
-DFlash2 AL 4.76 clears 4.0 and beats this-engine MTP (3.25) by more than 0.3. Peak DFlash2 eval VRAM 17542 MiB. `--fit on` failed on DFlash2 and was dropped from default recipes.
-
-Host 8080 is often taken. Default container map is host 8888 -> container 8080.
-
-## Recipes
-
-| file | what it turns on |
+| Final-image test | Result |
 | --- | --- |
-| `recipes/dflash2-max.env` | DFlash2 sidecar, flash-attn, jinja, VBR default, ctx 8192 |
-| `recipes/dflash2-262k.env` | same + ctx 262144, `--vbr-entry t8 --vbr-floor t3` |
-| `recipes/dflash2-turbo3-tcq.env` | pinned `turbo3_tcq` KV |
-| `recipes/dflash2-copyspec.env` | DFlash2 + CopySpec |
-| `recipes/mtp.env` | `--spec-type draft-mtp` |
-| `recipes/ar.env` | target only |
+| GSM8K throughput, n=40 | mean E2E 149.19 tok/s; mean AL5.917 |
+| Mixed short requests | aggregate107.95 tok/s; median TTFT0.175s |
+| 150000-token prefill + 200 decode | passed; prefill525.30 tok/s, decode27.84 tok/s |
+| NIAH 2n/3n | passed at261888 input tokens, 256-token response reserve |
+| Q200v2 text-180 | INCOMPLETE:171 correct /8 incorrect /1 ungraded; all20 manual reasoning rows reviewed |
+| BFCL v4 structural-hard20 | SCORED:13/20 correct;20 unique cases; zero timing errors |
+| Q200v2 E2E throughput | mean138.70 /median144.78 /aggregate124.71 tok/s |
+| Peak VRAM across primary suite | 23518 MiB |
 
-Default DFlash2 block for the Qwen3.8 sidecar is 13 (buun rewrites metadata 8). Restore 8 with `GGML_DFLASH2_BLOCK_SIZE_OVERRIDE=8`. Adaptive depth is on.
+Q200v2 `ifeval-023` reached the fixed8192-token output cap without a final answer. The cap was not raised and the row was not regenerated. BFCL is the frozen structural-complexity subset, not the official full200-case category score. See [full findings](notes/OPTIMIZED-PROFILE.md), [gate status](notes/GATES.md), and [machine-readable evidence](metrics/optimized/).
 
-## Host
+## Run
+
+With NVIDIA Container Toolkit and existing model directories:
+
+```bash
+docker run --gpus all -p 8888:8080 -v /path/to/models:/models:ro \
+  ghcr.io/r0b0tlab/buun-llama:3090-optimized dflash2-optimized
+```
+
+The model root must contain `qwen38-27b-exl3` and `dflash2-exl3`. Registry package visibility may require authentication; building locally does not require GHCR access.
+
+On the development host without NVIDIA Container Toolkit:
+
+```bash
+MODELS=/path/to/models IMAGE=buun-llama:3090-optimized RECIPE=dflash2-optimized \
+  bash container/run-serve.sh
+python3 scripts/wait_ready.py --base-url http://127.0.0.1:8888
+python3 scripts/serving_probe.py --base-url http://127.0.0.1:8888 --json-out work/serving-probe.json
+```
+
+The wrapper replaces the container named `buun-llama`. Its default host port is8888; container port8080. No API key is configured by these examples; restrict network access before exposing the endpoint.
+
+Build locally:
+
+```bash
+docker build --provenance=false --sbom=false -t buun-llama:3090-optimized -f container/Dockerfile .
+python3 -m unittest discover -s tests -v
+```
+
+Host build from the pinned engine:
 
 ```bash
 git clone --filter=blob:none https://github.com/spiritbuun/buun-llama-cpp
-cmake -B buun-llama-cpp/build -DGGML_CUDA=ON -DGGML_CUDA_FA=ON -DGGML_CUDA_FA_ALL_QUANTS=ON \
-  -DCMAKE_CUDA_ARCHITECTURES=86 -DCMAKE_BUILD_TYPE=Release
-cmake --build buun-llama-cpp/build -j$(nproc) --target llama-server
-export BIN=$PWD/buun-llama-cpp/build/bin/llama-server
-bash scripts/serve.sh recipes/dflash2-max.env
+git -C buun-llama-cpp checkout 1d0f493c73817176f6953069b7c10211de9555a1
+cmake -B buun-llama-cpp/build -DGGML_CUDA=ON -DGGML_CUDA_FA=ON -DGGML_CUDA_FA_ALL_QUANTS=ON -DCMAKE_CUDA_ARCHITECTURES=86 -DCMAKE_BUILD_TYPE=Release
+cmake --build buun-llama-cpp/build -j --target llama-server
+BIN=$PWD/buun-llama-cpp/build/bin/llama-server MODELS=/path/to/models bash scripts/serve.sh recipes/dflash2-optimized.env
 ```
 
-On another shell:
+Host-native recipes use port8080; Docker examples map it to8888. Keep the image's recipe selection argument `dflash2-optimized`; the image's legacy no-argument default remains `dflash2-max`.
 
-```bash
-python3 scripts/wait_ready.py --base-url http://127.0.0.1:8888
-python3 scripts/acceptance_check.py --base-url http://127.0.0.1:8888 --n 40 --json-out notes/acceptance-dflash2.json
-```
+## Other recipes
 
-## Container
+| File | Purpose |
+| --- | --- |
+| `dflash2-max.env` | historical8k/block13 default |
+| `dflash2-262k.env` | historical262k/block13 VBR profile |
+| `dflash2-turbo3-tcq.env` | fixed TCQ comparison |
+| `dflash2-copyspec.env` | copy-heavy experiments; not the general default |
+| `mtp.env` | embedded MTP baseline |
+| `ar.env` | autoregressive baseline |
 
-```bash
-docker build --provenance=false --sbom=false -t buun-llama:3090 -f container/Dockerfile .
-bash container/run-serve.sh
-```
+## Measurement boundaries
 
-Click-run once the image is on GHCR:
-
-```bash
-docker run --gpus all -p 8888:8080 -v buun-models:/models \
-  ghcr.io/r0b0tlab/buun-llama:3090
-```
-
-`RECIPE=dflash2-262k bash container/run-serve.sh` switches the long-context recipe.
-
-## Eval gates
-
-Scripts are Python 3 stdlib. They talk to llama-server.
-
-| Gate | Command | Status |
-| --- | --- | --- |
-| VRAM budget t3 @ 262k | `python3 scripts/vram_budget.py 4.0 t3` | passed (22.3/24 GB) |
-| DFlash2 load + greedy generate | `scripts/acceptance_check.py --n 1` | passed |
-| GSM8K n=40 AL and tok/s | `scripts/acceptance_check.py --n 40` | passed (AL 4.76, 111 tok/s) |
-| MTP and AR arms | serve `mtp.env` / `ar.env`, same script | passed (MTP AL 3.25 / 92 tok/s; AR AL 1.00 / 46 tok/s) |
-| 262k load + 150k prefill + 200 decode | serve `dflash2-262k.env`, `scripts/long_context_check.py` | unverified |
-| T=1 sampled vs AR | `scripts/sampled_sanity_check.py` | unverified |
-| NIAH 2n / 3n | `scripts/niah_multikey.py --variant 2n --target-tokens 261888 --max-tokens 256` | passed (261888 depth; 262080+thinking disclosed fail) |
-| Q200v2 | `scripts/r0b0bench_adapter.py` then r0b0bench kit | INCOMPLETE (169/10/1; hard 19/20; ifeval-023 empty; `notes/PUBLISH.md`) |
-
-Acceptance length uses `timings.predicted_n` and `timings.draft_n_accepted` from llama-server: `new_tokens / (new_tokens - accepted_draft_tokens)`.
-
-Q200v2 and the kit NIAH path need `scripts/r0b0bench_adapter.py --upstream http://127.0.0.1:8080 --port 8889` so `/v1/models` carries `max_model_len` and `/v1/chat/completions/render` exists.
-
-## Layout
-
-- `recipes/` — serve knobs and `PIN`
-- `scripts/` — stdlib eval + `serve.sh`
-- `container/` — CUDA 13 sm_86 image
-- `eval/gsm8k_n40.jsonl` — first 40 GSM8K test questions
-- `notes/` — design, gates, results
+- Optimization screened29 arm executions plus width/depth controls; faster AL alone was not promoted. See [width sweep](notes/DRAFT-WIDTH-SWEEP.md).
+- The prior buun/native ExLlamaV3 GSM8K numbers used different rendered prompts. The original AL comparison did not establish an engine defect; see [acceptance-gap diagnosis](notes/ACCEPTANCE-GAP.md).
+- Medium reasoning remains optional. A separate noncanonical medium run hit output caps; its scores are not frozen Q200v2 results.
+- Historical results and disclosures remain in `notes/PUBLISH.md` and `notes/RESULTS.md`.
+- Results distinguish mean per-request E2E, aggregate E2E and engine decode timing. They are not interchangeable.
 
 ## Licenses
 
-This repository: MIT. Engine: MIT (llama.cpp / buun-llama-cpp). EXL3 format and DFlash2 math: MIT (ExLlamaV3, z-lab/dflash). Weights follow the parent Hugging Face licenses.
+This package and the buun/llama.cpp engine are MIT. EXL3 and DFlash2 integrations retain their upstream notices. Model weights follow the parent Hugging Face licenses. Model weights are not included in the container.

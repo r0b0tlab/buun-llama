@@ -1,0 +1,28 @@
+{
+  "schema": "buun.production-suite.v1",
+  "run_id": "q200v2-buun-optimized-final-20260919",
+  "status": "COMPLETED_WITH_Q200_FAILURE",
+  "serve_image": "sha256:8d6d67a5b1ac856882731d5638b1291f5b81f89f75ac8e664df39cd7991b5652",
+  "engine_sha": "1d0f493c73817176f6953069b7c10211de9555a1",
+  "recipe": "recipes/dflash2-optimized.env",
+  "recipe_sha256": "bc2e27fdaba716aabb5ede98043b143dab8298b272f57fc719497f0b5776fe81",
+  "reasoning_effort": "low",
+  "host_recipe_mount": false,
+  "checks": {
+    "unit_tests": "5 passed",
+    "mixed_throughput": "completed",
+    "gsm8k_throughput": "40 requests completed",
+    "queued_clients": "1/2/4 client batches completed on one active slot",
+    "long_context": "150000 prompt + 200 generated; no truncation",
+    "niah": "2n and 3n passed at261888 prompt tokens",
+    "q200v2": "INCOMPLETE:171 correct,8 incorrect,1 capped/ungraded (ifeval-023)",
+    "bfcl": "SCORED:13/20 structural-hard20; zero timing errors",
+    "sampling": "48 requests/arm completed; limited smoke, not losslessness proof"
+  },
+  "disclosures": [
+    "Q200 cap retained at8192; failed response not regenerated",
+    "BFCL housekeeping locks relocated outside fresh results root; harness/grader files unchanged",
+    "Two BFCL setup attempts failed before generation; scored attempt used a fresh root",
+    "Previous medium-default candidate scores are archived separately, not used to fill final failures"
+  ]
+}

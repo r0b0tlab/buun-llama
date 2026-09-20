@@ -1,0 +1,94 @@
+{
+  "base_url": "http://127.0.0.1:8889",
+  "candidate_id": "qwen38-27b-exl3-buun-optimized",
+  "chat_template_kwargs": {
+    "enable_thinking": true,
+    "reasoning_effort": "low",
+    "thinking": true
+  },
+  "completeness_errors": [],
+  "correct_count": 172,
+  "dataset_count": 180,
+  "dataset_sha256": "66a75701cbeea69f212e1c8be92aab9efaf3fa4d7af3c6911c8f7864a17d8d14",
+  "families": {
+    "gsm8k": {
+      "accuracy_pct": 98.75,
+      "correct": 79,
+      "grade_complete": 80,
+      "grader_errors": 0,
+      "incorrect": 1,
+      "n": 80,
+      "transported": 80,
+      "ungraded": 0
+    },
+    "hard_reasoning": {
+      "accuracy_pct": 95.0,
+      "correct": 19,
+      "grade_complete": 20,
+      "grader_errors": 0,
+      "incorrect": 1,
+      "n": 20,
+      "transported": 20,
+      "ungraded": 0
+    },
+    "humaneval": {
+      "accuracy_pct": 97.5,
+      "correct": 39,
+      "grade_complete": 40,
+      "grader_errors": 0,
+      "incorrect": 1,
+      "n": 40,
+      "transported": 40,
+      "ungraded": 0
+    },
+    "ifeval": {
+      "accuracy_pct": 87.5,
+      "correct": 35,
+      "grade_complete": 40,
+      "grader_errors": 0,
+      "incorrect": 5,
+      "n": 40,
+      "transported": 40,
+      "ungraded": 0
+    }
+  },
+  "grade_complete": true,
+  "grader_error_count": 0,
+  "image_id": "sha256:caf1a95b886e50be2218621a79057ce68897f55497721c1344b3c061bbca1a8e",
+  "incorrect_count": 8,
+  "manual_evidence": {
+    "method": "independent_manual_review",
+    "path": "manual-evidence.json",
+    "reviewer": "Hermes",
+    "row_count": 20,
+    "run_identity_sha256": "c5d0259d99bf3490090023ec249022af326fbad1d76635d991d0cf272faace8b",
+    "sha256": "c9dd6614dfbd4302156e0c15d9ce154287e26b78b087223080b19d1a76abb328"
+  },
+  "model": "qwen38-27b-buun",
+  "not_admitted_count": 0,
+  "not_admitted_event": null,
+  "not_admitted_ids": [],
+  "profile_id": "rtx3090-buun-optimized-b8-adaptive-medium",
+  "quality_policy": {
+    "applied": false,
+    "name": "external_baseline_comparator_required",
+    "passed": null
+  },
+  "response_budget": {
+    "all_rows_stopped": true,
+    "ceiling_contact_ids": [],
+    "configured_max_tokens": 8192,
+    "finish_reason_counts": {
+      "stop": 180
+    },
+    "max_observed_completion_tokens": 6263
+  },
+  "rows": 180,
+  "run_id": "q200v2-buun-optimized-20260919",
+  "run_identity_sha256": "c5d0259d99bf3490090023ec249022af326fbad1d76635d991d0cf272faace8b",
+  "schema": "r0b0tlab.qwen38.quality_text_180_run.v2",
+  "status": "SCORED",
+  "transport_complete": true,
+  "transport_count": 180,
+  "ungraded_count": 0
+}

@@ -1,0 +1,13 @@
+{
+  "run_id": "q200v2-buun-optimized-20260919",
+  "serve_image": "sha256:b3ccad0942e8e2aa1839848ed6f0ccbec95681163a366b70202e467df7aca599",
+  "profile": "dflash2-optimized",
+  "default_reasoning": "medium",
+  "q200_request_reasoning": "low (frozen kit contract)",
+  "niah_prompt_tokens": 261888,
+  "niah_max_tokens": 256,
+  "recipe_sha256": "5a0fe3df74ecbb067eedf4135cb71345af0f05958e8e5dbfe6fd3db11328a17c",
+  "engine_sha": "1d0f493c73817176f6953069b7c10211de9555a1",
+  "build_note": "Image qualified without a host recipe mount. Host probe CLI was extended after image build; serving binary and recipe unchanged.",
+  "qualification": "running"
+}

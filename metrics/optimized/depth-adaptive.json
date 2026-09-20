@@ -1,0 +1,77 @@
+[
+  {
+    "new_tokens": 256,
+    "wall_s": 101.50620637601241,
+    "ttft_s": 96.7147767660208,
+    "decode_tps": 53.23924254128651,
+    "accepted": 159,
+    "proposed": 266,
+    "timings": {
+      "cache_n": 0,
+      "prompt_n": 65536,
+      "prompt_ms": 96709.132,
+      "prompt_per_token_ms": 1.4756642456054687,
+      "prompt_per_second": 677.6609265813698,
+      "predicted_n": 256,
+      "predicted_ms": 4789.7,
+      "predicted_per_token_ms": 18.78313725490196,
+      "predicted_per_second": 53.23924254128651,
+      "draft_n": 266,
+      "draft_n_accepted": 159,
+      "kv_bpv": 8.125
+    },
+    "stop_type": "limit",
+    "profile": "adaptive8-noartifact",
+    "depth": 65536
+  },
+  {
+    "new_tokens": 256,
+    "wall_s": 102.26782514998922,
+    "ttft_s": 97.49124566395767,
+    "decode_tps": 53.4071902414382,
+    "accepted": 167,
+    "proposed": 322,
+    "timings": {
+      "cache_n": 0,
+      "prompt_n": 65536,
+      "prompt_ms": 97485.369,
+      "prompt_per_token_ms": 1.4875086822509767,
+      "prompt_per_second": 672.2649836818076,
+      "predicted_n": 256,
+      "predicted_ms": 4774.638,
+      "predicted_per_token_ms": 18.724070588235293,
+      "predicted_per_second": 53.4071902414382,
+      "draft_n": 322,
+      "draft_n_accepted": 167,
+      "kv_bpv": 8.125
+    },
+    "stop_type": "limit",
+    "profile": "adaptive13-noartifact",
+    "depth": 65536
+  },
+  {
+    "new_tokens": 256,
+    "wall_s": 100.8372805910185,
+    "ttft_s": 96.48300880700117,
+    "decode_tps": 58.586372855623885,
+    "accepted": 161,
+    "proposed": 256,
+    "timings": {
+      "cache_n": 0,
+      "prompt_n": 65536,
+      "prompt_ms": 96477.262,
+      "prompt_per_token_ms": 1.472126190185547,
+      "prompt_per_second": 679.2895926088781,
+      "predicted_n": 256,
+      "predicted_ms": 4352.548,
+      "predicted_per_token_ms": 17.068815686274508,
+      "predicted_per_second": 58.586372855623885,
+      "draft_n": 256,
+      "draft_n_accepted": 161,
+      "kv_bpv": 4.125
+    },
+    "stop_type": "limit",
+    "profile": "adaptive8-entry4",
+    "depth": 65536
+  }
+]
